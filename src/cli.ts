@@ -11,7 +11,7 @@
  *   - Seal or sign envelopes
  *   - Generate keys
  *
- * For sealing and signature verification, use the DeepaData API at deepadata.com
+ * For sealing and verification, use ddna-tools.
  */
 
 import { Command } from 'commander';
@@ -116,7 +116,7 @@ program
 
         console.log('');
         console.log(chalk.dim('Note: This validates structure only, not cryptographic signature.'));
-        console.log(chalk.dim('For signature verification, use the DeepaData API at deepadata.com'));
+        console.log(chalk.dim('For signature verification, use ddna-tools.'));
       } else {
         console.log(chalk.red('INVALID') + ' - Envelope structure has errors');
 
@@ -150,7 +150,7 @@ ${chalk.bold('About this tool:')}
   It validates structure but does NOT verify cryptographic signatures.
 
 ${chalk.bold('For sealing and verification:')}
-  Use the DeepaData API at ${chalk.cyan('https://deepadata.com')}
+  Use ddna-tools: ${chalk.cyan('https://github.com/emotional-data-model/ddna-tools')}
 
 ${chalk.bold('Examples:')}
   $ ddna-reader inspect envelope.ddna

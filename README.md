@@ -1,4 +1,4 @@
-# deepadata-ddna-reader
+# ddna-reader
 
 Read-only tools for inspecting and validating `.ddna` envelope structure.
 
@@ -10,22 +10,22 @@ Read-only tools for inspecting and validating `.ddna` envelope structure.
 
 ## What This Package Does NOT Do
 
-- **Seal** or sign envelopes (requires DeepaData API)
-- **Verify** cryptographic signatures (requires DeepaData API)
-- **Generate** signing keys (requires DeepaData API)
+- **Seal** or sign envelopes (use [ddna-tools](https://github.com/emotional-data-model/ddna-tools))
+- **Verify** cryptographic signatures (use [ddna-tools](https://github.com/emotional-data-model/ddna-tools))
+- **Generate** signing keys (use [ddna-tools](https://github.com/emotional-data-model/ddna-tools))
 
-For sealing, signature verification, and certification, use the [DeepaData API](https://deepadata.com).
+For Certified (Level 3) attestation on Extended or Full profile artifacts, see [deepadata.com](https://deepadata.com).
 
 ## Installation
 
 ```bash
-npm install deepadata-ddna-reader
+npm install ddna-reader
 ```
 
 Or use directly with npx:
 
 ```bash
-npx deepadata-ddna-reader inspect <file>
+npx ddna-reader inspect <file>
 ```
 
 ## CLI Usage
@@ -66,7 +66,7 @@ import {
   inspectEnvelope,
   inspectJson,
   validateStructure,
-} from 'deepadata-ddna-reader';
+} from 'ddna-reader';
 
 // Read a .ddna file
 const envelope = JSON.parse(fs.readFileSync('artifact.ddna', 'utf-8'));
@@ -99,8 +99,8 @@ A `.ddna` envelope contains three components:
     "ddna_version": "1.1",
     "created_at": "2026-02-19T10:00:00Z",
     "edm_version": "0.6.0",
-    "jurisdiction": "AU",
-    "consent_basis": "explicit_consent",
+    "jurisdiction": "GDPR",
+    "consent_basis": "consent",
     "exportability": "allowed",
     "retention_policy": { ... }
   },
@@ -120,22 +120,22 @@ A `.ddna` envelope contains three components:
 }
 ```
 
-## Why Read-Only?
+## Architecture
 
-DeepaData operates as a certification authority for emotional data governance. The `.ddna` envelope format uses cryptographic signatures to ensure data integrity and provenance.
+The `.ddna` envelope format uses W3C Data Integrity Proofs with Ed25519 signatures.
 
-- **Schema validation** can be done locally (this package)
-- **Signature verification** requires the DeepaData registry to confirm certificate authenticity
-- **Sealing** requires DeepaData's signing infrastructure
+- **Sealing** (Level 2 - Sealed) is open: anyone can seal artifacts with their own Ed25519 keys using [ddna-tools](https://github.com/emotional-data-model/ddna-tools)
+- **Verification** is local: self-sealed artifacts are verified against the embedded `verificationMethod` (did:key)
+- **Certification** (Level 3 - Certified) is commercial: DeepaData provides third-party attestation for Extended and Full profile artifacts
 
-This is similar to SSL certificates: anyone can read a certificate, but only trusted Certificate Authorities can issue certificates that browsers trust.
+This package focuses on read-only inspection and structural validation. For sealing and verification, use ddna-tools.
 
 ## Related
 
 - [emotionaldatamodel.org](https://emotionaldatamodel.org) - Open specification for the Emotional Data Model
-- [deepadata.com](https://deepadata.com) - Certification authority and API for sealing and verification
+- [ddna-tools](https://github.com/emotional-data-model/ddna-tools) - Sealing and verification tools
+- [deepadata.com](https://deepadata.com) - Certification authority for Level 3 attestation
 - [deepadata-edm-spec](https://github.com/emotional-data-model/edm-spec) - Canonical EDM schema and examples
-- [deepadata-edm-sdk](https://github.com/deepadata/deepadata-edm-sdk) - LLM-assisted EDM extraction SDK
 
 ## License
 

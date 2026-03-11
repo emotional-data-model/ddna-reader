@@ -4,7 +4,7 @@
  * This module provides read-only inspection of .ddna envelopes.
  * It validates structure but does NOT verify cryptographic signatures.
  *
- * For signature verification and sealing, use the DeepaData API at deepadata.com
+ * For sealing and verification, use ddna-tools.
  */
 
 import type {
@@ -174,7 +174,7 @@ function truncateDid(did: string, maxLength = 50): string {
  * Inspect a .ddna envelope and return structured result
  *
  * This validates structure only - it does NOT verify cryptographic signatures.
- * For signature verification, use the DeepaData API at deepadata.com
+ * For signature verification, use ddna-tools.
  *
  * @param envelope - The envelope to inspect
  * @returns Inspection result with all relevant metadata
@@ -223,7 +223,7 @@ export function inspectEnvelope(envelope: object): InspectionResult {
  * Generate human-readable inspection output
  *
  * Note: This tool reads envelope contents but does NOT verify cryptographic signatures.
- * For signature verification and sealing, use the DeepaData API at deepadata.com
+ * For sealing and verification, use ddna-tools.
  *
  * @param envelope - The envelope to inspect
  * @returns Formatted string for terminal display
@@ -276,8 +276,8 @@ Expected structure: { ddna_header, edm_payload, proof }`;
 
   // Note about signature verification
   lines.push('');
-  lines.push('Note: Signature verification requires DeepaData API.');
-  lines.push('      Visit deepadata.com for sealing and verification.');
+  lines.push('Note: For signature verification, use ddna-tools.');
+  lines.push('      https://github.com/emotional-data-model/ddna-tools');
 
   return lines.join('\n');
 }
@@ -300,7 +300,7 @@ export function inspectJson(envelope: object): object {
       structureValid: result.structureValid,
       error: result.error,
       warnings: validation.warnings.length > 0 ? validation.warnings : undefined,
-      note: 'Signature verification requires DeepaData API at deepadata.com',
+      note: 'For signature verification, use ddna-tools',
     },
     envelope: {
       version: result.version,

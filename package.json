@@ -1,5 +1,5 @@
 {
-  "name": "deepadata-ddna-reader",
+  "name": "ddna-reader",
   "version": "0.1.0",
   "description": "Read-only tools for .ddna envelope inspection and structure validation",
   "type": "module",
@@ -39,12 +39,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deepadata/deepadata-ddna-reader.git"
+    "url": "git+https://github.com/emotional-data-model/ddna-reader.git"
   },
   "bugs": {
-    "url": "https://github.com/deepadata/deepadata-ddna-reader/issues"
+    "url": "https://github.com/emotional-data-model/ddna-reader/issues"
   },
-  "homepage": "https://github.com/deepadata/deepadata-ddna-reader#readme",
+  "homepage": "https://github.com/emotional-data-model/ddna-reader#readme",
   "engines": {
     "node": ">=18.0.0"
   },

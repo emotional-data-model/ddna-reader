@@ -42,6 +42,7 @@ export interface DdnaHeader {
 
 /**
  * W3C Data Integrity Proof structure (read-only)
+ * Source: W3C Data Integrity specification
  */
 export interface DataIntegrityProof {
   type: 'DataIntegrityProof';
@@ -55,6 +56,34 @@ export interface DataIntegrityProof {
   challenge?: string;
   nonce?: string;
   previousProof?: string;
+}
+
+/**
+ * Proof options (all proof fields except proofValue)
+ * Used for signature verification
+ */
+export type ProofOptions = Omit<DataIntegrityProof, 'proofValue'>;
+
+/**
+ * Document structure for signing (envelope without proof)
+ */
+export interface SigningDocument {
+  ddna_header: DdnaHeader;
+  edm_payload: EdmPayload;
+}
+
+/**
+ * Result of signature verification
+ */
+export interface VerifyResult {
+  /** Whether the signature is valid */
+  valid: boolean;
+  /** Error message if verification failed */
+  reason?: string;
+  /** The DID of the signer */
+  verificationMethod?: string;
+  /** When the proof was created (ISO 8601) */
+  created?: string;
 }
 
 /**

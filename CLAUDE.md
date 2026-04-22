@@ -67,7 +67,7 @@ Key design decisions:
 - did:web throws if no resolver provided
 - Timestamps are signer-attested, not RFC 3161
 
-Source: `deepadata-com/internal_document_series/ADR/ADR-0020-open-verification-in-ddna-reader.md`
+Source: `deepadata-com/planning/ADR/ADR-0020-open-verification-in-ddna-reader.md`
 
 ## OSS Boundary
 
@@ -87,8 +87,9 @@ These are deferred to future versions:
 - **v0.3.0 @deepadata/ddna-verify-core** - Extraction of verify.ts
   and did.ts to a shared private package consumed by both
   ddna-reader and deepadata-com to eliminate version drift.
-- **Test vectors** - Canonical test vectors in edm-spec are required
-  before npm publish (Phase 2 per ADR-0020).
+- **Test vectors** - DONE 2026-04-22. 10 canonical vectors in
+  edm-spec/test-vectors/ and bundled locally in test-fixtures/vectors/.
+  Conformance test suite passes all 10 vectors.
 
 ## Source of Truth
 
